@@ -1,0 +1,121 @@
+// Reset
+* {
+  margin: 0px;
+  padding: 0px;
+  font-size: 16px;
+}
+// Colors
+$primary-color0: hsl(212, 21%, 14%);
+$primary-color1: hsl(228, 12%, 48%);
+$primary-color2: hsl(0, 0%, 100%);
+
+$neutral-color0: hsl(158, 36%, 37%);
+$neutral-color1: hsl(30, 38%, 92%);
+//Device
+$m-device: 376px;
+@mixin d($size) {
+  @if $size == m {
+    @media screen and (max-width: $m-device) {
+      @content;
+    }
+  }
+}
+// Site
+img {
+  display: block;
+  max-width: 100%;
+}
+body {
+  background-color: $neutral-color1;
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  @include d(m) {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, 300px);
+    @include d(m) {
+      grid-template-columns: 300px;
+    }
+    img {
+      border-radius: 10px 0px 0px 10px;
+      @include d(m) {
+        border-radius: 10px 10px 0px 0px;
+      }
+    }
+    .conteudo {
+      background-color: $primary-color2;
+      border-radius: 0px 10px 10px 0px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      @include d(m) {
+        border-radius: 0px 0px 10px 10px;
+      }
+      p:first-child {
+        color: $primary-color1;
+        font-family: "Montserrat";
+        font-size: 1.125rem;
+        letter-spacing: 0.25rem;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      h1 {
+        font-size: 2rem;
+        font-family: "Fraunces";
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      p:nth-child(3) {
+        color: $primary-color1;
+        font-family: "Montserrat";
+        line-height: 1.5;
+        margin-bottom: 20px;
+      }
+      .prices {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        span:first-child {
+          color: $neutral-color0;
+          font-size: 1.75rem;
+          font-family: "Fraunces";
+          font-weight: 700;
+          margin-right: 10px;
+        }
+        span:nth-child(2) {
+          color: $primary-color1;
+          text-decoration: line-through;
+          font-family: "Montserrat";
+          font-size: 0.75rem;
+        }
+      }
+      button {
+        border: none;
+        padding: 15px;
+        border-radius: 10px;
+        color: $primary-color2;
+        background-color: $neutral-color0;
+        &:hover {
+          background-color: $primary-color0;
+        }
+        span {
+          text-align: center;
+          &::before {
+            display: inline-block;
+            content: "";
+            width: 17px;
+            height: 16px;
+            background: url(./images/icon-cart.svg);
+            background-repeat: no-repeat;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}
